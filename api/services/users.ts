@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt';
 import jwt, {JwtPayload} from 'jsonwebtoken';
-import {User, UserModel} from "../models/User";
+import {PartialUser, User, UserModel} from "../models/User";
 
 const JWT_SECRET: string = process.env["JWT_SECRET "] as string;
 const blacklist: string[] = [];
@@ -42,7 +42,7 @@ export function logout(token: string) {
     blacklist.push(token);
 }
 
-function createSession(user: User) {
+function createSession(user: User): PartialUser {
     return {
         email: user.email,
         _id: user._id,
@@ -53,16 +53,16 @@ function createSession(user: User) {
     };
 }
 
-export function verifySession(token: string) {
-    if (blacklist.includes(token)) {
+export function verifySession(accessToken: string): PartialUser {
+    if (blacklist.includes(accessToken)) {
         throw new Error('Token is invalidated');
     }
 
-    const payload = jwt.verify(token, JWT_SECRET) as JwtPayload;
+    const payload = jwt.verify(accessToken, JWT_SECRET) as JwtPayload;
 
     return {
         email: payload.email,
         _id: payload._id,
-        token
+        accessToken
     };
 }

@@ -5,7 +5,10 @@ export interface User {
     name: string;
     email: string;
     hashedPassword: string;
+    accessToken: string;
 }
+
+export type PartialUser = Omit<User, 'hashedPassword' | 'name'>;
 
 const EMAIL_PATTERN = /^([a-zA-Z0-9_.+-]+)@([a-zA-Z]+)\.([a-zA-Z]+)$/;
 
