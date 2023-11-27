@@ -1,9 +1,10 @@
-import {model, Schema} from 'mongoose';
+import {model, Schema, Types} from 'mongoose';
 
 export interface User {
-    name: number;
+    _id: Types.ObjectId;
+    name: string;
     email: string;
-    passrword: string;
+    hashedPassword: string;
 }
 
 const EMAIL_PATTERN = /^([a-zA-Z0-9_.+-]+)@([a-zA-Z]+)\.([a-zA-Z]+)$/;
@@ -13,7 +14,7 @@ const userSchema = new Schema<User>({
     email: {
         type: String, required: [true, 'Email is required'],
         validate: {
-            validator(value) {
+            validator(value: string) {
                 return EMAIL_PATTERN.test(value);
             },
             message: 'Email must be valid'
@@ -29,4 +30,4 @@ userSchema.index({email: 1}, {
     }
 });
 
-export const User = model<User>('User', userSchema);
+export const UserModel = model<User>('User', userSchema);

@@ -1,6 +1,7 @@
 import {model, Schema, Types} from 'mongoose';
 
 export interface Post {
+    _id: Types.ObjectId;
     title: string;
     description: string;
     date: Date,
@@ -27,5 +28,5 @@ const schema = new Schema<Post>({
     owner: { type: Schema.Types.ObjectId, ref: 'User'},
 });
 
-export const PostModel = model<Post>('Review', schema);
+export const PostModel = model<Post>('Post', schema);
 

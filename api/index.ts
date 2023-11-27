@@ -1,9 +1,18 @@
 import express, {Request, Response} from 'express';
 import cors from './middlewares/cors';
+import * as mongoose from "mongoose";
 
 start();
 
 async function start() {
+
+    try {
+        await mongoose.connect('mongodb://localhost:27017/hapni');
+        console.log('Database ready');
+    } catch (err) {
+        console.error('Database connection failed');
+        process.exit(1);
+    }
 
     const app = express();
     app.use(express.json());
