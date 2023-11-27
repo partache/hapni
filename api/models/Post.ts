@@ -25,7 +25,7 @@ const schema = new Schema<Post>({
         minlength: [2, 'Description must be between 1 and 5'],
         maxlength: [250, 'Description must be at least 250 characters long']
     },
-    owner: { type: Schema.Types.ObjectId, ref: 'User'},
+    owner: {type: Schema.Types.ObjectId, ref: 'User'},
 });
 
 export const PostModel = model<Post>('Post', schema);
