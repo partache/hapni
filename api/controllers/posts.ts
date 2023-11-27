@@ -1,12 +1,11 @@
 import * as api from '../services/posts';
 import preload from '../middlewares/preload';
-import {ObjectId} from 'mongodb';
 
 import {Router} from 'express';
 import {isAuth, isOwner} from '../middlewares/guards';
 import {mapErrors} from '../utils/mapper';
-import {PartialPost, Post} from "../models/Post";
 import {Types} from "mongoose";
+import {PartialPost} from "../models/Post";
 
 export const router = Router({mergeParams: true});
 router.get('/', async (req, res) => {
@@ -38,7 +37,7 @@ router.get('/:id', preload(), (req, res) => {
     res.json(item);
 });
 
-router.put('/:id', preload(), isOwner(), async (req, res) => {
+router.put('/:id',isAuth(), preload(), isOwner(), async (req, res) => {
     const postId = req.params.id;
     const post: PartialPost = {
         title: req.body.title,
