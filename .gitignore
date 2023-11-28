@@ -2,5 +2,12 @@
 node_modules/
 # IDEs and editors
 .idea
+.vscode/*
 # ENV
 .env
+# Compiled output
+/dist
+/tmp
+/out-tsc
+# Ignore npm/yarn debug log
+npm-debug.log
