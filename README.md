@@ -1,4 +1,4 @@
-# Monorepo for App called "Hapni" with Express (TypeScript) Backend and Angular Frontend
+# Monorepo for App called "Hapni" blog system with Express (TypeScript) Backend and Angular Frontend
 
 This monorepo contains an Express backend and an Angular frontend. It leverages TypeScript for both the backend and frontend development. The backend uses nodemon for automatic server restarts during development.
 
