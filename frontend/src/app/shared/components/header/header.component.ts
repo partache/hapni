@@ -2,6 +2,8 @@ import { Component, DestroyRef } from '@angular/core'
 import { AuthService } from '../../services/auth.service'
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop'
 import { PostsStep } from '../../../features/models/posts-step'
+import { Features } from '../../models/features'
+import { UserStep } from '../../../auth/models/user-step'
 
 @Component({
     selector: 'app-header',
@@ -23,4 +25,6 @@ export class HeaderComponent {
     }
 
     protected readonly PostsStep = PostsStep
+  protected readonly Features = Features
+  protected readonly UserStep = UserStep
 }

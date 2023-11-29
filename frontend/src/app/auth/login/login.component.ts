@@ -59,4 +59,5 @@ export class LoginComponent {
     }
 
     protected readonly UserStep = UserStep
+  protected readonly Features = Features
 }

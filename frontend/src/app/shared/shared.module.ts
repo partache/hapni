@@ -36,6 +36,7 @@ import { FormControlPipe } from './pipe/form-control.pipe'
         EmailControlComponent,
         PasswordControlComponent,
         RepeatPasswordControlComponent,
+        RouterLink,
     ],
     providers: [
         {

@@ -1,11 +1,11 @@
 <header>
   <nav class="flex items-center justify-between bg-blue-500 p-4">
       <span class="text-white text-xl font-bold">Hapni App</span>
-      <nav *ngIf="!isAuth; else loggedInTemplate" class="flex items-center space-x-4">
-        <a routerLink="/login">Login</a>
+      <nav *ngIf="!isAuth; else loggedInTemplate" class="flex items-center space-x-4 mr-4 text-white">
+        <a [routerLink]="['/', Features.USERS, UserStep.LOGIN]">Login</a>
       </nav>
       <ng-template #loggedInTemplate>
-        <a [routerLink]="['/',PostsStep.CATALOG]">Catalog</a>
+        <a [routerLink]="['/',Features.POSTS, PostsStep.CATALOG]">Catalog</a>
         <a (click)="logout()">Logout</a>
       </ng-template>
   </nav>
