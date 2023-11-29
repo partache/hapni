@@ -3,7 +3,7 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {BehaviorSubject, catchError, EMPTY, map, Observable, of} from "rxjs";
 import {apiUrlFeature} from "../util/api-url";
 import {Features} from "../models/features";
-import {User} from "../models/User";
+import {User} from "../models/user";
 import {tap} from "rxjs/operators";
 
 @Injectable({

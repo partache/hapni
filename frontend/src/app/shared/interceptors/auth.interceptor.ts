@@ -9,7 +9,7 @@ import {
 import {Observable} from 'rxjs';
 import {tap} from 'rxjs/operators';
 
-import {User} from "../models/User";
+import {User} from "../models/user";
 import {AuthService} from "../services/auth.service";
 
 @Injectable()

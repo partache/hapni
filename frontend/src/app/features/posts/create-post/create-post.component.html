@@ -1,1 +1,32 @@
-<p>create-post works!</p>
+<div class="container mx-auto p-6">
+    <h1 class="text-3xl font-bold mb-6">Create Post</h1>
+
+    <form [formGroup]="postForm">
+        <!-- Post Title -->
+        <div class="mb-4">
+            <label for="title" class="block text-sm font-medium text-gray-600">Post Title</label>
+            <input id="title" type="text" [formControl]="this.postForm.controls.title" class="mt-1 p-2 border rounded-md w-full">
+        </div>
+        <span *ngIf="formControlHasErrors(postForm.controls.title)">
+        <span class="text-red">{{minMaxLengthValidationMessage()}}</span>
+        </span>
+        <!-- Post Description -->
+        <div class="mb-4">
+            <label for="description" class="block text-sm font-medium text-gray-600">Post Description</label>
+            <textarea id="description" [formControl]="this.postForm.controls.description" class="mt-1 p-2 border rounded-md w-full"></textarea>
+        </div>
+        <span *ngIf="formControlHasErrors(postForm.controls.description)">
+        <span class="text-red">{{minMaxLengthValidationMessage()}}</span>
+        </span>
+        <!-- Post Image URL -->
+        <div class="mb-4">
+            <label for="imageUrl" class="block text-sm font-medium text-gray-600">Image URL</label>
+            <input id="imageUrl" type="text" [formControl]="this.postForm.controls.imageUrl" class="mt-1 p-2 border rounded-md w-full">
+        </div>
+        <span *ngIf="formControlHasErrors(postForm.controls.imageUrl)">
+        <span class="text-red">{{imageValidationMessage()}}</span>
+        </span>
+        <!-- Submit Button -->
+        <button (click)="onSubmit()" type="submit" class="bg-blue-500 text-white p-2 rounded-md">Create Post</button>
+    </form>
+</div>

@@ -47,12 +47,12 @@ export class AuthFormComponent implements AfterViewInit {
     if (this.loginForm.invalid) {
       return;
     }
-    const {email, password, repeatPassword} = this.loginForm.value;
+    const {email, password, repeatPassword} = this.loginForm.getRawValue();
     this.submitForm.emit({email, password, repeatPassword});
   }
 
   protected formControlHasErrors(control: AbstractControl) {
-    return Object.values(LoginAsyncErrors).find(v => this.loginForm.controls.email.hasError(v as string))
+    return Object.values(LoginAsyncErrors).find(v => control.hasError(v as string))
   }
 
   protected passwordControlValidationMessage() {
