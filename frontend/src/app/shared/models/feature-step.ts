@@ -1,6 +1,4 @@
-import {UserStep} from "../../auth/login/models/user-step";
-import {HomeStep} from "./home-step";
+import {UserStep} from "../../auth/models/user-step";
 
 export type FeatureStep =
-  UserStep
-  | HomeStep;
+  UserStep;

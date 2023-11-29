@@ -38,6 +38,10 @@ export class AuthService {
     sessionStorage.setItem('userId', newUser._id);
   }
 
+  isLoggedInUser() {
+   return sessionStorage.getItem('authToken');;
+  }
+
   handleLogout() {
     sessionStorage.removeItem('email');
     sessionStorage.removeItem('authToken');

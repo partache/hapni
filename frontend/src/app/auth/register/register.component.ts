@@ -1,19 +1,18 @@
 import {Component} from '@angular/core';
-import {RoutingService} from "../../shared/services/routing.service";
-import {Features} from "../../shared/models/features";
-import {HttpErrorResponse} from "@angular/common/http";
 import {LoginAsyncError} from "../models/login-async-error";
 import {AuthService} from "../../shared/services/auth.service";
-import {UserStep} from "../models/user-step";
+import {RoutingService} from "../../shared/services/routing.service";
 import {User} from "../../shared/models/User";
-
+import {Features} from "../../shared/models/features";
+import {HttpErrorResponse} from "@angular/common/http";
+import {UserStep} from "../models/user-step";
 @Component({
-  selector: 'app-login',
+  selector: 'app-register',
   template: `
-    <app-auth-form (submitForm)="handleLogin($event)"></app-auth-form>
+    <app-auth-form [isLogin]="false" (submitForm)="handleLogin($event)"></app-auth-form>
   `,
 })
-export class LoginComponent {
+export class RegisterComponent {
   asyncError?: LoginAsyncError;
 
   constructor(
@@ -27,7 +26,7 @@ export class LoginComponent {
 
     this.auth.login({email, password}).subscribe({
       next: () => {
-        this.router.navigateToStep(Features.USERS, UserStep.CATALOG);
+        this.router.navigateToStep(Features.USERS, this.UserStep.CATALOG);
       },
       error: (err: HttpErrorResponse) => {
         this.asyncError = this.getHttpError(err);
@@ -43,4 +42,6 @@ export class LoginComponent {
         return {unknownServerError: true}
     }
   }
+
+  protected readonly UserStep = UserStep;
 }

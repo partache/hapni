@@ -4,14 +4,19 @@ import {AuthInterceptor} from "./interceptors/auth.interceptor";
 import {JwtInterceptor} from "./interceptors/jwt.interceptor";
 import {NgModule} from "@angular/core";
 import {FormControlErrorComponent} from "./components/form-control-error/form-control-error.component";
+import {HeaderComponent} from "./components/header/header.component";
+import {FooterComponent} from "./components/footer/footer.component";
+import {AuthFormComponent} from './components/auth-form/auth-form.component';
+import {FormsModule} from "@angular/forms";
 
 
 @NgModule({
-  declarations: [FormControlErrorComponent],
+  declarations: [FormControlErrorComponent, HeaderComponent, FooterComponent, AuthFormComponent],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule
   ],
-  exports: [FormControlErrorComponent],
+  exports: [FormControlErrorComponent, HeaderComponent, FooterComponent, AuthFormComponent],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

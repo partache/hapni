@@ -1,3 +1,3 @@
-import {LoginAsyncErrors} from "../../auth/login/models/login-async-error";
+import {LoginAsyncErrors} from "../../auth/models/login-async-error";
 
 
