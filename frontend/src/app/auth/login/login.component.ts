@@ -21,9 +21,8 @@ export class LoginComponent {
         private router: RoutingService) {
     }
 
-    handleLogin(formValues: Partial<User>): void {
-
-        const {email, password} = formValues;
+    handleLogin(formValues: unknown): void {
+        const {email, password} = formValues  as unknown as Partial<User>;
 
         this.auth.login({email, password}).subscribe({
             next: () => {

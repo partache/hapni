@@ -7,14 +7,16 @@ import {FormControlErrorComponent} from "./components/form-control-error/form-co
 import {HeaderComponent} from "./components/header/header.component";
 import {FooterComponent} from "./components/footer/footer.component";
 import {AuthFormComponent} from './components/auth-form/auth-form.component';
-import {FormsModule} from "@angular/forms";
+import {ReactiveFormsModule} from "@angular/forms";
+import {RouterLink} from "@angular/router";
 
 
 @NgModule({
   declarations: [FormControlErrorComponent, HeaderComponent, FooterComponent, AuthFormComponent],
   imports: [
     CommonModule,
-    FormsModule
+    ReactiveFormsModule,
+    RouterLink
   ],
   exports: [FormControlErrorComponent, HeaderComponent, FooterComponent, AuthFormComponent],
   providers: [
