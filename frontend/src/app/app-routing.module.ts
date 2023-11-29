@@ -8,6 +8,10 @@ const routes: Routes = [
     path: Features.USERS,
     loadChildren: () => import('./auth/users.routing').then((m) => m.UsersRoutingModule)
   },
+  {
+    path: Features.POSTS,
+    loadChildren: () => import('./features/posts/posts.routing').then((m) => m.PostsRoutingModule)
+  },
 
 ];
 

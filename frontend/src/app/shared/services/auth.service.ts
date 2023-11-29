@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {catchError, EMPTY, map, Observable, of} from "rxjs";
+import {BehaviorSubject, catchError, EMPTY, map, Observable, of} from "rxjs";
 import {apiUrlFeature} from "../util/api-url";
 import {Features} from "../models/features";
 import {User} from "../models/User";
@@ -11,6 +11,8 @@ import {tap} from "rxjs/operators";
 })
 export class AuthService {
   private apiUrl = apiUrlFeature(Features.USERS);
+  private _isAuthenticated$ = new BehaviorSubject<boolean>(false);
+  isAuthenticated$: Observable<boolean> = this._isAuthenticated$.asObservable();
 
   constructor(private httpClient: HttpClient) {
   }
@@ -38,7 +40,7 @@ export class AuthService {
     sessionStorage.setItem('userId', newUser._id);
   }
 
-  isLoggedInUser() {
+  isAuthUser() {
    return sessionStorage.getItem('authToken');;
   }
 

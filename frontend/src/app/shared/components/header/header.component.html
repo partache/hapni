@@ -1,21 +1,12 @@
 <header>
   <nav>
-    <button>
-    <p>InShape</p>
-    </button>
-    <ul>
-      <li className={styles["items__elem"]}>
-        Nutrition
-      </li>
-      <li className={styles["items__elem"]}>
-        Clothing
-      </li>
-      <li className={styles["items__elem"]}>
-        Supplements
-      </li>
-    <li>
-      <a [routerLink]="'/logout'">{{'Logout'}}</a>
-    </li>
-    </ul>
+      <span>Hapni App</span>
+      <nav *ngIf="!isAuth; else loggedInTemplate">
+        <a routerLink="/login">Login</a>
+      </nav>
+      <ng-template #loggedInTemplate>
+        <a routerLink="/home">Home</a>
+        <a (click)="logout()">Logout</a>
+      </ng-template>
   </nav>
 </header>
