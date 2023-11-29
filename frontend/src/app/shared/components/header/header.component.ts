@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, DestroyRef, OnInit} from '@angular/core';
 import {AuthService} from "../../services/auth.service";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 import {PostsStep} from "../../../features/models/posts-step";
@@ -8,19 +8,15 @@ import {PostsStep} from "../../../features/models/posts-step";
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
-export class HeaderComponent implements OnInit{
+export class HeaderComponent{
   isAuth: boolean = false;
-
-  constructor(private authService: AuthService) {}
-
-  ngOnInit() {
+  constructor(private authService: AuthService, destroyRef: DestroyRef) {
     this.authService.isAuthenticated$
-      .pipe(takeUntilDestroyed())
-      .subscribe(isAuthenticated => {
-      this.isAuth = isAuthenticated;
-    });
+        .pipe(takeUntilDestroyed())
+        .subscribe(isAuthenticated => {
+          this.isAuth = isAuthenticated;
+        });
   }
-
   logout() {
     this.authService.logout();
   }

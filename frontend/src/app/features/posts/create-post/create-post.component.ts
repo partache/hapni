@@ -15,9 +15,9 @@ import {imageUrlValidator} from "../../../shared/util/image-validator";
 export class CreatePostComponent {
 
     postForm = this.fb.group({
-        title: ['', Validators.required, Validators.minLength(5), Validators.maxLength(100)],
-        description: ['', Validators.required, Validators.minLength(5), Validators.maxLength(200)],
-        imageUrl: ['', Validators.required, imageUrlValidator],
+        title: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(100)]],
+        description: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(200)]],
+        imageUrl: ['', [Validators.required, imageUrlValidator]],
     });
 
     constructor(private fb: NonNullableFormBuilder, private post: PostService, private router: RoutingService) {
