@@ -1,0 +1,8 @@
+<h1 class="text-3xl font-bold mb-8">Posts Catalog</h1>
+<div class="flex flex-wrap -mx-4">
+  <div *ngFor="let post of posts" class="post-card">
+    <h2>{{ post.title }}</h2>
+    <p>{{ post.description}}</p>
+    <img [src]="post.imageUrl" alt="{{ post.title }}" class="max-w-full mb-1 border-r-2">
+  </div>
+</div>

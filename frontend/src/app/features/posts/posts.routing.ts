@@ -4,7 +4,7 @@ import {authGuard} from "../../shared/guards/auth.guard";
 import {NgModule} from "@angular/core";
 import {RouterModule, Routes} from "@angular/router";
 import {PostsModule} from "./posts.module";
-import {PostsComponent} from "../../auth/posts/posts.component";
+import {PostsComponent} from "./posts/posts.component";
 
 const routes: Routes = [
   {

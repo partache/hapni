@@ -6,7 +6,8 @@ export interface Post {
     description: string;
     createdAt?: Date,
     updatedAt?: Date,
-    owner: Types.ObjectId
+    owner: Types.ObjectId,
+    imageUrl: string
 }
 
 export type PartialPost = Omit<Post, '_id'| 'updatedAt'| ' createdAt'>;
@@ -23,6 +24,10 @@ const schema = new Schema<Post>({
         required: true,
         minlength: [2, 'Description must be between 1 and 5'],
         maxlength: [250, 'Description must be at least 250 characters long']
+    },
+    imageUrl: {
+        type: String,
+        required: true,
     },
     owner: {type: Schema.Types.ObjectId, ref: 'User'},
 }, {timestamps: true});

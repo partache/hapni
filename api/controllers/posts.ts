@@ -8,15 +8,16 @@ import {Types} from "mongoose";
 import {PartialPost} from "../models/Post";
 
 export const router = Router({mergeParams: true});
-router.get('/', async (req, res) => {
+router.get('/all', async (req, res) => {
     const data = await api.getAll();
     res.json(data);
 });
 
-router.post('/', isAuth(), async (req, res) => {
+router.post('/create', isAuth(), async (req, res) => {
     const post: PartialPost = {
         title: req.body.title,
         description: req.body.description,
+        imageUrl: req.body.imageUrl,
         owner: req.user._id as Types.ObjectId
     };
 
@@ -42,6 +43,7 @@ router.put('/:id',isAuth(), preload(), isOwner(), async (req, res) => {
     const post: PartialPost = {
         title: req.body.title,
         description: req.body.description,
+        imageUrl: req.body.imageUrl,
         owner: req.user._id as Types.ObjectId
     };
 

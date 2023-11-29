@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from "../../services/auth.service";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
+import {PostsStep} from "../../../features/models/posts-step";
 
 @Component({
   selector: 'app-header',
@@ -24,4 +25,5 @@ export class HeaderComponent implements OnInit{
     this.authService.logout();
   }
 
+  protected readonly PostsStep = PostsStep;
 }
