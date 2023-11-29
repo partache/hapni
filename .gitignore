@@ -11,3 +11,5 @@ node_modules/
 /out-tsc
 # Ignore npm/yarn debug log
 npm-debug.log
+##Prettier
+.prettierigone

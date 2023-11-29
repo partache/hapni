@@ -1,6 +1,6 @@
-import {AbstractControl, ValidatorFn} from "@angular/forms";
+import { AbstractControl, ValidatorFn } from '@angular/forms'
 
-export function setValidators(control: AbstractControl, validators: ValidatorFn) {
-  control.setValidators(validators);
-  setTimeout(() => control.updateValueAndValidity(), 0)
+export function setValidators(control: AbstractControl, validators: ValidatorFn | ValidatorFn[]) {
+    control.setValidators(validators)
+    setTimeout(() => control.updateValueAndValidity(), 0)
 }
