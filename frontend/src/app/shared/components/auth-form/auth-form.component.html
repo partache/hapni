@@ -1,36 +1,21 @@
-<div class="absolute top-0 w-full h-full" id="formContent">
-    <div class="flex flex-col justify-center mx-auto w-1/6 h-full gap-4 text-center">
-        <h2 class="w-full">Please login</h2>
-        <form [formGroup]="loginForm" class="w-full flex flex-wrap gap-4 justify-center">
-            <input [formControl]="loginForm.controls.email" type="text" id="email" name="email" placeholder="Add email"
-                   class="form-control block w-full px-3 py-1.5 text-base font-normal text-center
-             text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded
-             transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
-            " [ngClass]=" {'visible text-red-600': formInvalid(loginForm.controls.email) }"/>
-            <span *ngIf="formControlHasErrors(loginForm.controls.email)">
-        <span class="text-red">{{emailValidationMessage()}}</span>
-      </span>
-            <input [formControl]="loginForm.controls.email" type="password" id="password" name="password"
-                   placeholder="Add your password"
-                   class="form-control block w-full px-3 py-1.5 text-base font-normal text-center text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
-                " [ngClass]=" {'visible text-red-600': formInvalid(loginForm.controls.password) }">
-            <span *ngIf="formControlHasErrors(loginForm.controls.password)"></span>
-            <span class="text-red">{{passwordControlValidationMessage()}}
-      </span>
-            <input [formControl]="loginForm.controls.email" type="password" id="rePassword" name="rePassword"
-                   placeholder="Repeat your password"
-                   class="form-control block w-full px-3 py-1.5 text-base font-normal text-center text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
-                         " [ngClass]=" {'visible text-red-600': formInvalid(loginForm.controls.repeatPassword) }">
-            <span *ngIf="formControlHasErrors(loginForm.controls.password)">
-                 <span class="text-red">{{passwordControlValidationMessage()}}</span>
-               </span>
-            <span *ngIf="isLogin">
-           <a [routerLink]="['/',UserStep.REGISTER]">If you are a new user, click here to create a new profile</a>
-         </span>
-            <button (click)=submit()
-                    class="w-3/5 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
-                {{ isLogin ? 'Login' : 'Register' }}
-            </button>
-        </form>
+<form [formGroup]="loginForm">
+    <div class="mt-4">
+        <app-email [control]="this.loginForm.controls['email'] | formControl" ngDefaultControl></app-email>
     </div>
+    <div class="mt-4">
+        <app-pass [control]="this.loginForm.controls['password'] | formControl" ngDefaultControl></app-pass>
+    </div>
+    <div class="mt-4">
+        <app-re-pass [control]="this.loginForm.controls['repeatPassword'] | formControl" ngDefaultControl></app-re-pass>
+    </div>
+</form>
+<div class="m-auto">
+    <span class="block mx-auto p-4 overflow-hidden whitespace-nowrap overflow-ellipsis"*ngIf="isLogin">
+        <a [routerLink]="['/', UserStep.REGISTER]">
+            <span class="text-blue-500 hover:text-blue-700 underline">If you are a new user, click here to create a new profile</span></a
+        >
+    </span>
+    <button (click)="submit()" type="submit" class="bg-blue-500 text-white p-2 rounded-md w-full">
+        {{ isLogin ? "Login" : "Register" }}
+    </button>
 </div>

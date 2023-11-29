@@ -7,6 +7,7 @@ import { RouterLink } from '@angular/router'
 import { AuthFormComponent } from './components/auth-form/auth-form.component'
 import { EmailControlComponent } from './components/auth-form/components/email-control/email.component'
 import { PasswordControlComponent } from './components/auth-form/components/password/password.component'
+import { RepeatPasswordControlComponent } from './components/auth-form/components/repeat-password/repeat-password.control'
 import { FooterComponent } from './components/footer/footer.component'
 import { FormControlErrorComponent } from './components/form-control-error/form-control-error.component'
 import { HeaderComponent } from './components/header/header.component'
@@ -23,9 +24,19 @@ import { FormControlPipe } from './pipe/form-control.pipe'
         FormControlPipe,
         EmailControlComponent,
         PasswordControlComponent,
+        RepeatPasswordControlComponent,
     ],
     imports: [CommonModule, ReactiveFormsModule, RouterLink],
-    exports: [FormControlErrorComponent, HeaderComponent, FooterComponent, AuthFormComponent],
+    exports: [
+        FormControlErrorComponent,
+        HeaderComponent,
+        FooterComponent,
+        AuthFormComponent,
+        FormControlPipe,
+        EmailControlComponent,
+        PasswordControlComponent,
+        RepeatPasswordControlComponent,
+    ],
     providers: [
         {
             provide: HTTP_INTERCEPTORS,

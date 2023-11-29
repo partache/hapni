@@ -3,25 +3,41 @@ import { Component } from '@angular/core'
 
 import { PostsStep } from '../../features/models/posts-step'
 import { Features } from '../../shared/models/features'
-import { User } from '../../shared/models/user'
 import { AuthService } from '../../shared/services/auth.service'
 import { RoutingService } from '../../shared/services/routing.service'
 import { LoginAsyncError } from '../models/login-async-error'
+import { NonNullableFormBuilder, Validators } from '@angular/forms'
+import { emailValidator } from '../../shared/util/validators'
+import { UserStep } from '../models/user-step'
 
 @Component({
     selector: 'app-login',
-    template: ` <app-auth-form (submitForm)="handleLogin($event)"></app-auth-form> `,
+    templateUrl: './login.component.html',
 })
 export class LoginComponent {
     asyncError?: LoginAsyncError
 
+    loginForm = this.fb.group({
+        email: ['', [Validators.required, emailValidator]],
+        password: ['', [Validators.required, Validators.minLength(5)]],
+        repeatPassword: ['', Validators.required],
+    })
+
     constructor(
         private auth: AuthService,
-        private router: RoutingService
+        private router: RoutingService,
+        private fb: NonNullableFormBuilder
     ) {}
 
-    handleLogin(formValues: unknown): void {
-        const { email, password } = formValues as unknown as Partial<User>
+    submit(): void {
+        this.loginForm.markAllAsTouched()
+        console.log(this.loginForm)
+
+        if (this.loginForm.invalid) {
+            return
+        }
+
+        const { email, password } = this.loginForm.getRawValue()
 
         this.auth.login({ email, password }).subscribe({
             next: () => {
@@ -41,4 +57,6 @@ export class LoginComponent {
                 return { unknownServerError: true }
         }
     }
+
+    protected readonly UserStep = UserStep
 }
