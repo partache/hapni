@@ -6,6 +6,7 @@
       </nav>
       <ng-template #loggedInTemplate>
         <a [routerLink]="['/',Features.POSTS, PostsStep.CATALOG]">Catalog</a>
+        <a [routerLink]="['/',Features.POSTS, PostsStep.POST_CREATE]">Create Post</a>
         <a (click)="logout()">Logout</a>
       </ng-template>
   </nav>
