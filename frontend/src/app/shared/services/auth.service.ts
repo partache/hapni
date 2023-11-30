@@ -26,7 +26,7 @@ export class AuthService {
     }
 
     logout(): Observable<void> {
-        return this.httpClient.post<void>(this.apiUrl('logout'), {})
+        return this.httpClient.get<void>(this.apiUrl('logout'), {}).pipe(tap(() => this._isAuthenticated$.next(false)));
     }
 
     register(user: Partial<User>): Observable<AuthUser> {

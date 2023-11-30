@@ -5,6 +5,7 @@ import {PostsStep} from '../../../features/models/posts-step'
 import {Features} from '../../models/features'
 import {UserStep} from '../../../auth/models/user-step'
 import {RoutingService} from "../../services/routing.service";
+import {catchError, throwError} from "rxjs";
 
 @Component({
   selector: 'app-header',
@@ -26,11 +27,11 @@ export class HeaderComponent {
 
   logout() {
     this.authService.logout().subscribe({
-      next: () => {
-        this.router.navigateToStep(Features.POSTS, PostsStep.CATALOG)
-      },
-      error: () => this.router.navigateToErrorPage()
-    })
+        next: () => {
+          this.router.navigateToStep(Features.POSTS, PostsStep.CATALOG)
+        },
+        error: () => this.router.navigateToErrorPage()
+      })
   }
 
   protected readonly PostsStep = PostsStep
