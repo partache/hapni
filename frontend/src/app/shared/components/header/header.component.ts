@@ -11,13 +11,14 @@ import { UserStep } from '../../../auth/models/user-step'
     styleUrl: './header.component.css',
 })
 export class HeaderComponent {
-    isAuth: boolean = false
+    isAuth!: boolean | string;
+
     constructor(
         private authService: AuthService,
         destroyRef: DestroyRef
     ) {
         this.authService.isAuthenticated$.pipe(takeUntilDestroyed()).subscribe((isAuthenticated) => {
-            this.isAuth = isAuthenticated
+            this.isAuth = (this.authService.isAuthUser() || isAuthenticated);
         })
     }
     logout() {

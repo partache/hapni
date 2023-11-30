@@ -4,7 +4,7 @@ import { BehaviorSubject, catchError, EMPTY, map, Observable } from 'rxjs'
 import { tap } from 'rxjs/operators'
 
 import { Features } from '../models/features'
-import { User } from '../models/user'
+import {AuthUser, User} from '../models/user'
 import { apiUrlFeature } from '../util/api-url'
 
 @Injectable({
@@ -17,26 +17,30 @@ export class AuthService {
 
     constructor(private httpClient: HttpClient) {}
 
-    login(user: Partial<User>): Observable<User | null> {
-        return this.httpClient.post<User>(this.apiUrl('login'), user, { observe: 'response' }).pipe(map((response) => response.body))
+    login(user: Partial<User>): Observable<AuthUser | null> {
+        return this.httpClient.post<AuthUser>(this.apiUrl('login'), user, { observe: 'response' })
+          .pipe(
+            tap(() => this._isAuthenticated$.next(true)),
+            map((response) => response.body)
+          )
     }
 
     logout(): Observable<void> {
         return this.httpClient.post<void>(this.apiUrl('logout'), {})
     }
 
-    register(user: User): Observable<User> {
-        return this.httpClient.post<User>(this.apiUrl('register'), user);
+    register(user: Partial<User>): Observable<AuthUser> {
+        return this.httpClient.post<AuthUser>(this.apiUrl('register'), user).pipe(tap(() => this._isAuthenticated$.next(true)));
     }
 
-    handleLogin(newUser: User) {
+    handleLogin(newUser: AuthUser) {
         sessionStorage.setItem('email', newUser.email)
         sessionStorage.setItem('authToken', newUser.accessToken)
         sessionStorage.setItem('userId', newUser._id)
     }
 
     isAuthUser() {
-        return sessionStorage.getItem('authToken')
+        return sessionStorage.getItem('authToken') ?? ''
     }
 
     handleLogout() {

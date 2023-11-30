@@ -22,7 +22,7 @@ async function start() {
     app.use(cors());
     app.use(auth());
     app.use('/posts', postController);
-    app.get('/users', userController);
+    app.use('/users', userController);
 
     app.get('/', (req: Request, res: Response) => res.json({message: 'REST service operational'}));
 

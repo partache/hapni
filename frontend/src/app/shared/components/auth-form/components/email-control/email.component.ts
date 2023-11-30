@@ -25,7 +25,7 @@ export class EmailControlComponent implements AfterViewInit {
     }
 
     formInvalid(formControl: FormControl) {
-        return formControl.touched || formControl.dirty || formControl.invalid
+        return (formControl.touched || formControl.dirty) && formControl.invalid
     }
 
     protected formControlHasErrors(control: AbstractControl) {

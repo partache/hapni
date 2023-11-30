@@ -2,10 +2,10 @@ import bcrypt from 'bcrypt';
 import jwt, {JwtPayload} from 'jsonwebtoken';
 import {PartialUser, User, UserModel} from "../models/User";
 
-const JWT_SECRET: string = process.env["JWT_SECRET "] as string;
+const JWT_SECRET: string = process.env.JWT_SECRET || 'development';
 const blacklist: string[] = [];
 
-export async function register(email: string, password: string) {
+export async function register(email: string, password: string, name: string) {
     const existing = await UserModel.findOne({email: new RegExp(`^${email}$`, 'i')});
 
     if (existing) {
@@ -14,7 +14,8 @@ export async function register(email: string, password: string) {
 
     const user = new UserModel({
         email,
-        hashedPassword: await bcrypt.hash(password, 10)
+        hashedPassword: await bcrypt.hash(password, 10),
+        name
     });
 
     await user.save();

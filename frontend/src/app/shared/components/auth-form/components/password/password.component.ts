@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core'
+import {AfterViewInit, Component, Input} from '@angular/core'
 import { AbstractControl, FormControl, Validators } from '@angular/forms'
 
 import { LoginAsyncErrors, validationMessage } from '../../../../../auth/models/login-async-error'
@@ -9,15 +9,15 @@ import { emailValidator } from '../../../../util/validators'
     selector: 'app-pass',
     templateUrl: './password.component.html',
 })
-export class PasswordControlComponent {
+export class PasswordControlComponent implements AfterViewInit {
     @Input() control!: FormControl<string>
 
     ngAfterViewInit() {
-        setValidators(this.control, [Validators.required, emailValidator])
+        setValidators(this.control, [Validators.required])
     }
 
     formInvalid(formControl: FormControl) {
-        return formControl.touched || formControl.dirty || formControl.invalid
+        return (formControl.touched || formControl.dirty) && formControl.invalid
     }
 
     protected formControlHasErrors(control: AbstractControl) {

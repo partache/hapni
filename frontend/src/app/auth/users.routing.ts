@@ -4,6 +4,7 @@ import {UserStep} from "./models/user-step";
 import {LoginComponent} from "./login/login.component";
 import {UsersModule} from "./users.module";
 import {RegisterComponent} from "./register/register.component";
+import {guestGuard} from "../shared/guards/auth.guard";
 
 const routes: Routes = [
   {
@@ -11,7 +12,7 @@ const routes: Routes = [
     children: [
       {path: '', redirectTo: UserStep.LOGIN, pathMatch: "full"},
       {path: UserStep.LOGIN, component: LoginComponent},
-      {path: UserStep.REGISTER, component: RegisterComponent},
+      {path: UserStep.REGISTER, component: RegisterComponent, canActivate: [guestGuard]},
     ]
   }
 
