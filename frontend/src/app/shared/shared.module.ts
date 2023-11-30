@@ -15,6 +15,7 @@ import {AuthInterceptor} from './interceptors/auth.interceptor'
 import {JwtInterceptor} from './interceptors/jwt.interceptor'
 import {FormControlPipe} from './pipe/form-control.pipe'
 import {NameControlComponent} from "./components/auth-form/components/name/name-control.component";
+import { ErrorComponent } from './error/error.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import {NameControlComponent} from "./components/auth-form/components/name/name-
     EmailControlComponent,
     PasswordControlComponent,
     RepeatPasswordControlComponent,
-    NameControlComponent
+    NameControlComponent,
+    ErrorComponent
   ],
   imports: [CommonModule, ReactiveFormsModule, RouterLink],
   exports: [

@@ -14,4 +14,8 @@ export class RoutingService {
   navigateToStep(feature: Features, step: FeatureStep) {
     this.router.navigate([feature, step], {skipLocationChange: true, queryParamsHandling: 'preserve'})
   }
+
+  navigateToErrorPage() {
+    this.router.navigate(['/error'], {queryParamsHandling: null})
+  }
 }
